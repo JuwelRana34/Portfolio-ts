@@ -1,7 +1,7 @@
 'use client'
 
 import { supabase } from "@/lib/supabaseClient";
-
+import type { User } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
 
 
@@ -11,7 +11,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>){
-  const [user, setUser] = useState<any | null>(null);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     // Check current session

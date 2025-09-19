@@ -3,11 +3,12 @@
 import { useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import { useRouter } from "next/navigation";
+import { User } from "@supabase/supabase-js";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useState<any | null>(null);
+  const [user, setUser] = useState<User| null>(null);
   const [loading, setLoading] = useState(false);
   const router = useRouter()
   const handleLogin = async () => {
@@ -70,7 +71,7 @@ export default function LoginForm() {
 
         {user && (
           <div className="mt-4 p-2 bg-green-100 rounded">
-            <p>Welcome, {user.email}</p>
+            <p>Welcome,</p>
           </div>
         )}
       </div>
