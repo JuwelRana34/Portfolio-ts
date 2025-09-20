@@ -8,9 +8,8 @@ import HeroFlipText from "./HeroFlipText";
 export default function HeroComponent() {
   return (
     <>
-      
-      <div className=" hero-container">
       <HeroSportLight />
+      <div className=" hero-container">
        <div className=" relative z-50 flex flex-col md:flex-row  justify-between px-6 py-12 md:py-24 gap-12 md:gap-24 p-2">
          {/* left-side div */}
         <div className="left-side">
