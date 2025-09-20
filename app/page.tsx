@@ -1,8 +1,9 @@
 // "use client";
 
+import Aboutme from "@/components/about/About";
+import ContactForm from "@/components/contact/Contact";
+import Footer from "@/components/footer/Footer";
 import HeroComponent from "@/components/hero/Hero-component";
-
-import { cn } from "@/lib/utils";
 
 // import { supabase } from "@/lib/supabaseClient";
 // import { useEffect, useState } from "react";
@@ -39,27 +40,21 @@ export default function Home() {
 
   return (
     <>
-      <section id="home" className=" relative bg-white dark:bg-black h-screen overflow-hidden">
+      <section
+        id="home"
+        className=" relative bg-white dark:bg-black md:h-screen"
+      >
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center  [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-black" />
 
-        <div
-        className={cn(
-          "absolute inset-0",
-          "[background-size:20px_20px]",
-          "[background-image:linear-gradient(to_right,#e4e4e7_1px,transparent_1px),linear-gradient(to_bottom,#e4e4e7_1px,transparent_1px)]",
-          "dark:[background-image:linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_1px)] opacity-50",
-        )}
-      />
-  <div className="pointer-events-none absolute inset-0 flex items-center justify-center  [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-black"/>
-  
-<div className="z-50 relative">
-   <HeroComponent/>
-</div>
-       
-     
+        <div className="z-50 relative">
+          <HeroComponent />
+        </div>
       </section>
 
       {/* about section   */}
-      <section id="about">about</section>
+      <section id="about">
+        <Aboutme/>
+      </section>
 
       {/* skills section  */}
       <section id="skills">skills</section>
@@ -72,9 +67,10 @@ export default function Home() {
 
       {/* contact section  */}
       <section id="contact">
-        contact
-        {/* FIXME:here add footer  */}
+       <ContactForm/>
       </section>
+
+      <Footer/>
     </>
   );
 }

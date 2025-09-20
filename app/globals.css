@@ -45,6 +45,25 @@
 
 }
 
+
+/* Shimmer animation */
+@keyframes shimmer {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Utility class for shimmer effect */
+.animate-shimmer {
+  animation: shimmer 2s linear infinite;
+}
+
+
+
+
 @keyframes spotlight {
   0% {
     opacity: 0;

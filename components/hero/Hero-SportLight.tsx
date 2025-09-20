@@ -6,7 +6,7 @@ export default function HeroSportLight() {
   const {theme} = useTheme();
   return (
      <Spotlight
-        className="-top-40 left-0 md:-top-20 md:left-60"
+        className=" -top-0 left-0 md:-top-20 md:left-60"
         fill={ theme == "dark" ? "#0ea5e9" : "#c085fc"}
       />
   );
