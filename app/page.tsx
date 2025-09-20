@@ -1,6 +1,7 @@
 // "use client";
 
 import HeroComponent from "@/components/hero/Hero-component";
+
 import { cn } from "@/lib/utils";
 
 // import { supabase } from "@/lib/supabaseClient";
@@ -39,7 +40,6 @@ export default function Home() {
   return (
     <>
       <section id="home" className=" relative bg-white dark:bg-black h-screen overflow-hidden">
-        {/* FIXME:here add nav  */}
 
         <div
         className={cn(
