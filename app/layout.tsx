@@ -11,7 +11,7 @@ const bricolage = Bricolage_Grotesque({
 
 export const metadata: Metadata = {
   title: "Md.Juwel Rana",
-  description: "portfolio of md. juwel rana",
+  description: "portfolio of Md.Juwel Rana",
 };
 
 export default function RootLayout({
@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <body
-        className={`${bricolage.variable} antialiased`}
+        className={`${bricolage.variable} antialiased max-w-[1440px] mx-auto`}
       >
          <ThemeProvider
             attribute="class"

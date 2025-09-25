@@ -4,6 +4,8 @@ import Aboutme from "@/components/about/About";
 import ContactForm from "@/components/contact/Contact";
 import Footer from "@/components/footer/Footer";
 import HeroComponent from "@/components/hero/Hero-component";
+import HomePageProjects from "@/components/Projects/HomePageProject";
+
 
 // import { supabase } from "@/lib/supabaseClient";
 // import { useEffect, useState } from "react";
@@ -63,7 +65,9 @@ export default function Home() {
       <section id="education">education</section>
 
       {/* portfolio section  */}
-      <section id="portfolio">portfolio</section>
+      <section id="portfolio">
+        <HomePageProjects/>
+      </section>
 
       {/* contact section  */}
       <section id="contact">

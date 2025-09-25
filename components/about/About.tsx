@@ -3,7 +3,7 @@ function Aboutme() {
   return (
     <div
       id="About"
-      className="overflow-hidden min-h-screen dark:bg-gradient-to-t dark:from-[#0e152d] dark:to-[#020617] grid-flow-dense grid grid-cols-1 lg:grid-cols-2 py-5 bg-gradient-to-tl from-purple-500/20 to-sky-500/10"
+      className="overflow-hidden min-h-screen dark:bg-gradient-to-t dark:from-[#0e152d] dark:to-[#020617] grid-flow-dense grid grid-cols-1 lg:grid-cols-2 py-5 bg-gradient-to-tl from-purple-500/20 to-sky-500/10 maxWidth"
     >
       <div className="  w-10/12 mx-auto flex items-center order-2 md:order-1">
         <img className=" rounded-md shadow-md"
