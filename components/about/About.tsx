@@ -1,11 +1,12 @@
 import React from "react";
 function Aboutme() {
   return (
-    <div
+    <div className="bg-gradient-to-tl from-purple-500/20 to-sky-500/10 h-fit dark:bg-gradient-to-t dark:from-[#0e152d] dark:to-[#020617]  ">
+      <div
       id="About"
-      className="overflow-hidden min-h-screen dark:bg-gradient-to-t dark:from-[#0e152d] dark:to-[#020617] grid-flow-dense grid grid-cols-1 lg:grid-cols-2 py-5 bg-gradient-to-tl from-purple-500/20 to-sky-500/10 maxWidth"
+      className="overflow-hidden grid-flow-dense grid grid-cols-1 lg:grid-cols-2 py-5 max-w-7xl mx-auto"
     >
-      <div className="  w-10/12 mx-auto flex items-center order-2 md:order-1">
+      <div className=" w-10/12 mx-auto flex items-center order-2 md:order-1">
         <img className=" rounded-md shadow-md"
           src="https://img.freepik.com/free-photo/rear-view-programmer-working-all-night-long_1098-18697.jpg?t=st=1738826399~exp=1738829999~hmac=bb607502f59343f827def1ae1e1f1ab46370f1af3607b37e227248d3d7b49da9&w=740"
           alt="photo"
@@ -38,6 +39,8 @@ function Aboutme() {
         
       </div>
     </div>
+    </div>
+    
   );
 }
 

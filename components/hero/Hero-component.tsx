@@ -9,7 +9,7 @@ import HeroFlipText from "./HeroFlipText";
 import SocialIcon from "./Social-icon";
 export default function HeroComponent() {
   return (
-    <div className="relative w-full h-full  md:h-screen overflow-hidden">
+    <div className="relative w-full md:h-screen xl:h-fit  overflow-hidden">
       <div
         className={cn(
           "absolute inset-0",
@@ -19,7 +19,7 @@ export default function HeroComponent() {
         )}
       />
       <HeroSportLight />
-      <div className=" hero-container">
+      <div className=" hero-container max-w-7xl mx-auto">
         <div className=" relative z-50 flex flex-col md:flex-row  justify-between px-6 py-12 md:py-24 gap-12 md:gap-24 p-2">
           {/* left-side div */}
           <div className="left-side md:w-[60%] lg:w-full">
