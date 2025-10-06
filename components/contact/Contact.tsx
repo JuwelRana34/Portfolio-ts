@@ -44,6 +44,9 @@ export default function ContactForm() {
         setName("");
         setEmail("");
         setMessage("");
+        setTimeout(() => {
+          setSuccess(false)
+        }, 2000);
       }
     } catch (err) {
       setError("Something went wrong");

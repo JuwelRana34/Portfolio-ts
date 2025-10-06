@@ -39,8 +39,8 @@ export default function HeroNav() {
     },
   ];
   return (
-   <div className="fixed top-0 left-0 w-full bg-white/30 dark:bg-black/30 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
-    <nav className="max-w-7xl mx-auto  flex justify-end items-center p-4 z-[999px] text-sm md:text-base ">
+   <div className="fixed top-0 left-0 w-full bg-white/30 dark:bg-black/30 backdrop-blur-md border-b border-gray-200 z-[9999] dark:border-gray-800">
+    <nav className="max-w-7xl mx-auto  flex justify-end items-center p-4  text-sm md:text-base ">
       
  <div className="hidden md:block">
         {navItems.map((item) => (

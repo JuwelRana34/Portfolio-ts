@@ -9,7 +9,7 @@ import HeroFlipText from "./HeroFlipText";
 import SocialIcon from "./Social-icon";
 export default function HeroComponent() {
   return (
-    <div className="relative w-full md:h-screen xl:h-fit  overflow-hidden">
+    <div className="relative w-full md:py-5 lg:py-16 xl:h-fit  overflow-hidden">
       <div
         className={cn(
           "absolute inset-0",
@@ -61,7 +61,7 @@ export default function HeroComponent() {
           </div>
 
           {/* right-side div */}
-          <div className="right-side flex justify-center md:w-[40%] lg:w-full  ">
+          <div className=" right-side flex justify-center md:w-[40%] lg:w-full  ">
             <motion.div
               className="flex justify-center"
               initial={{ opacity: 0, y: 20 }}
@@ -80,7 +80,7 @@ export default function HeroComponent() {
                 alt="Hero Image"
                 width={1000}
                 height={1000}
-                className=" lg:w-[450px]  lg:h-[450px] justify-center rounded-md ring-3 ring-purple-500/70 dark:ring-sky-500/70"
+                className="lg:w-[450px]  lg:h-[450px] justify-center rounded-md ring-3 ring-purple-500/70 dark:ring-sky-500/70"
               />
             </motion.div>
           </div>
