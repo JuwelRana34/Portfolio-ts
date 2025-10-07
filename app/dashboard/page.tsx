@@ -15,7 +15,7 @@ interface Contact {
 
 export default function Page() {
   const [user, setUser] = useState<User | null>(null);
-  const [contacts, setContacts] = useState<Contact[] | null>([]);
+  const [contacts, setContacts] = useState<Contact[]>([]);
   const [loadingUser, setLoadingUser] = useState(true);
 
 useEffect(() => {
@@ -83,7 +83,7 @@ useEffect(() => {
 
   return (
     <div>
-      page dashboard {user?.email}{" "}
+      page dashboard {user?.email}
       {user && (
         <Button variant={"destructive"} onClick={handleLogout}>
           Logout
