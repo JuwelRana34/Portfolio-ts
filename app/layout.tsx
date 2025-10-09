@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import {Bricolage_Grotesque} from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
 
 
 const bricolage = Bricolage_Grotesque({
@@ -31,6 +32,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             {children}
+             <Toaster richColors position="top-center"  />
           </ThemeProvider>
       </body>
     </html>

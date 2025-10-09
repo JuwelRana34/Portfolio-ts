@@ -27,6 +27,14 @@ export default function SocialIcon() {
           className="w-10 h-10 rounded-md hover:scale-125 transition bg-gray-200"
         />
       </Link>
+      <Link href="https://wa.me/+8801761632836">
+        <img
+          src="https://cdn-icons-png.flaticon.com/128/15713/15713434.png"
+          alt="whatsapp"
+          className="w-11 h-11 rounded-md hover:scale-125 transition "
+        />
+      </Link>
+
     </div>
   );
 }
