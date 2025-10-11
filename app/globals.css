@@ -208,7 +208,12 @@ code {
 .tiptap-content u { text-decoration: underline; }
 
 /* Highlights */
-.tiptap-content mark { background-color: #fcd34d; color: inherit; padding: 0 0.1rem; }
+.tiptap-content mark {
+   background-color: #fcd34d; 
+   color: inherit;
+   padding: 0 0.1rem; 
+  
+  }
 
 /* Ordered & unordered lists */
 .tiptap-content ol {
@@ -252,10 +257,8 @@ code {
 }
 
 /* Images */
-.tiptap-content img {
-  max-width: 100%;
-  border-radius: 0.5rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+div[data-type="horizontalRule"] {
+  margin: 5px 0 !important;
 }
+
 

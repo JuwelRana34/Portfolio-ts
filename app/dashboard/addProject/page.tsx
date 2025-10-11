@@ -4,86 +4,134 @@ import { supabase } from "@/lib/supabaseClient";
 import { ChangeEvent, useState } from "react";
 import { toast } from "sonner";
 
-export default function AddProject() {
-  const [title, setTitle] = useState<string>("");
-  const [image, setImage] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [description, setDescription] = useState<string>("");
-  console.log(description); // ✅ will print <p>...</p> text
+interface UploadedImage {
+  url: string;
+  public_id: string;
+}
 
-  // 📸 Image upload to Supabase
+export default function AddProject() {
+  const [title, setTitle] = useState("");
+  const [category, setCategory] = useState(""); // single string
+  const [technology, setTechnology] = useState(""); // comma-separated string
+  const [link, setLink] = useState("");
+  const [image, setImage] = useState<UploadedImage | null>(null);
+  const [description, setDescription] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const handleImageUpload = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
     setLoading(true);
     try {
-      const fileName = `${Date.now()}-${file.name}`;
-      const { data, error } = await supabase.storage
-        .from("projectImage")
-        .upload(`public/${fileName}`, file, {
-          cacheControl: "3600",
-          upsert: false,
-        });
-
-      if (error) {
-        console.error(error);
-        alert("Image upload failed!");
-        return;
-      }
-
-      const publicUrl = supabase.storage
-        .from("projectImage")
-        .getPublicUrl(data.path).data.publicUrl;
-      console.log(publicUrl);
-      setImage(publicUrl);
-    } catch (error) {
-      console.error("Error uploading image:", error);
-      toast.error("Error uploading image");
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", "portfolio"); // your preset
+      const cloudName = "dbwbwwteo";
+      const res = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+        method: "POST",
+        body: formData,
+      });
+      const data = await res.json();
+      if (data.error) throw new Error(data.error.message);
+      setImage({ url: data.secure_url, public_id: data.public_id });
+      toast.success("Image uploaded!");
+    } catch (err) {
+      console.error(err);
+      toast.error("Image upload failed!");
     } finally {
       setLoading(false);
     }
   };
 
-  // 🚀 Submit project to Supabase
-  const handleSubmit = async () => {
-    console.log("Editor HTML:", description); // ✅ will print <p>...</p> text
+  const deleteImageFromCloudinary = async (public_id: string) => {
+    try {
+      const cloudName = "dbwbwwteo";
+      await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/destroy`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ public_id }),
+      });
+    } catch (err) {
+      console.error("Failed to delete image from Cloudinary:", err);
+    }
+  };
 
-    if (!title || !description || !image) {
-      alert("Please fill all fields!");
+  const handleSubmit = async () => {
+    if (!title || !category || !technology || !link || !description || !image) {
+      toast.error("Please fill all fields!");
       return;
     }
 
-    const { error } = await supabase.from("portfolios").insert([
-      {
-        title,
-        category: "Web Development", // You can modify this as needed
-        technology: "React, Node.js", // You can modify this as needed
-        link:"https://example.com", // You can modify this as needed
-        description,
-        image_url: image,
-      },
-    ]);
+    setLoading(true);
+    try {
+      const { error } = await supabase.from("portfolios").insert([
+        {
+          title,
+          category, // single string
+          technology, // comma-separated string
+          link,
+          description,
+          image_url: image.url,
+          public_id: image.public_id,
+        },
+      ]);
 
-    if (error) alert(error.message);
-    else alert("✅ Project added successfully!");
+      if (error) {
+        toast.error(error.message);
+        if (image.public_id) await deleteImageFromCloudinary(image.public_id);
+      } else {
+        toast.success("Project added successfully!");
+        setTitle("");
+        setCategory("");
+        setTechnology("");
+        setLink("");
+        setDescription("");
+        setImage(null);
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Project submission failed!");
+      if (image?.public_id) await deleteImageFromCloudinary(image.public_id);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="max-w-2xl mx-auto my-10 p-5 shadow-md rounded-xl border border-sky-100 ">
+    <div className="max-w-2xl mx-auto my-10 p-5 shadow-md rounded-xl border border-sky-100">
       <h1 className="text-2xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-sky-600 to-sky-400 mb-6">
         Add New Project
       </h1>
 
-      {/* Title */}
       <input
         type="text"
-        placeholder="Enter project title"
+        placeholder="Project Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className="w-full border p-2 rounded-md mb-4 focus:ring-2 focus:ring-sky-300 outline-none"
+        className="w-full border p-2 rounded-md mb-3 focus:ring-2 focus:ring-sky-300 outline-none"
+      />
+      <input
+        type="text"
+        placeholder="Category"
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+        className="w-full border p-2 rounded-md mb-3 focus:ring-2 focus:ring-sky-300 outline-none"
+      />
+      <input
+        type="text"
+        placeholder="Technology (e.g. React, JS, Next)"
+        value={technology}
+        onChange={(e) => setTechnology(e.target.value)}
+        className="w-full border p-2 rounded-md mb-3 focus:ring-2 focus:ring-sky-300 outline-none"
+      />
+      <input
+        type="text"
+        placeholder="Project Link"
+        value={link}
+        onChange={(e) => setLink(e.target.value)}
+        className="w-full border p-2 rounded-md mb-3 focus:ring-2 focus:ring-sky-300 outline-none"
       />
 
-      {/* Image Upload */}
       <input
         type="file"
         accept="image/*"
@@ -91,24 +139,17 @@ export default function AddProject() {
         className="mb-3 border p-2 rounded-md w-full focus:ring-2 focus:ring-sky-200 outline-none"
       />
 
-      {/* Preview */}
       {image && (
         <div className="mb-4">
-          <img
-            src={image}
-            alt="Preview"
-            className="w-full rounded-lg shadow-sm border border-sky-100"
-          />
+          <img src={image.url} alt="Preview" className="w-full rounded-lg shadow-sm border border-sky-100" />
         </div>
       )}
 
-      {/* Rich Text Editor */}
-      <div className="border overflow-hidden min-h-96  rounded-md p-3 mb-4">
-        <h1 className=" underline">Discripton:</h1>
+      <div className="border overflow-hidden min-h-96 rounded-md p-3 mb-4">
+        <h1 className="underline">Description:</h1>
         <SimpleEditor setDescription={setDescription} />
       </div>
 
-      {/* Submit Button */}
       <button
         onClick={handleSubmit}
         disabled={loading}
