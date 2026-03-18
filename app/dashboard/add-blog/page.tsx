@@ -31,5 +31,5 @@ export default function AddBlog({ driveFileId }) {
 }
 
 // Use করুন
-<PDFViewer driveFileId="1loJSiozratYJ8chMCLOypcUDfUhxCKAz" />
+<AddBlog driveFileId="1loJSiozratYJ8chMCLOypcUDfUhxCKAz" />
 
