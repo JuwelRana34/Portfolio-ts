@@ -1,27 +1,24 @@
 'use client';
 
-export default function PDFViewer({ fileId }: { fileId: string }) {
-  const previewUrl = `https://drive.google.com/file/d/${fileId}/preview`;
+interface PDFViewerProps {
+  fileId: string;
+}
+
+export default function PDFViewer({ fileId }: PDFViewerProps) {
+  // download এর বদলে view দিন
+  const pdfUrl = `https://drive.google.com/uc?export=view&id=${fileId}`;
 
   return (
-    <div style={{
-      width: '100%',
-      maxWidth: '1000px',
-      margin: '0 auto',
-      borderRadius: '12px',
-      overflow: 'hidden',
-    }}>
-      <iframe
-        src={previewUrl}
+    <div style={{ width: '100%', height: '100vh' }}>
+      <embed
+        src={pdfUrl}
+        type="application/pdf"
         width="100%"
-        height="700px"
-        style={{ border: 'none', display: 'block' }}
-        title="PDF Viewer"
-        allow="autoplay"
+        height="100%"
       />
     </div>
   );
 }
 
-// Use করুন — prop নাম fileId
+// Use করুন
 <PDFViewer fileId="1mA67ud3ND0wkA6ElOn6pO2-oBR2G6jDe" />
