@@ -22,7 +22,7 @@ export default function PDFViewer({ fileId }: PDFViewerProps) {
             href={`https://drive.google.com/file/d/${fileId}/view`}
             target="_blank"
             rel="noopener noreferrer"
-          >
+        
             এখানে দেখুন
           </a>
         </p>
